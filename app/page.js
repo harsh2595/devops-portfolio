@@ -29,14 +29,14 @@ const projects = [
         desc: "CI/CD pipeline using Jenkins, Docker & ECS.",
         impact: "Reduced deployment time",
         details: "Jenkins, Docker, ECS",
-        link: "https://github.com/harsh2595/node-ecs-app.git",
+        link: "https://github.com/harsh2595/node-ecs-app",
     },
     {
         title: "Node.js on EKS with Monitoring",
         desc: "Deployed Node app with Prometheus & Grafana.",
         impact: "Real-time monitoring & alerting",
         details: "EKS, Prometheus, Grafana",
-        link: "https://github.com/harsh2595/node-eks-app-monitoring.git",
+        link: "https://github.com/harsh2595/node-eks-app-monitoring",
     },
 ];
 
@@ -45,7 +45,7 @@ export default function Portfolio() {
     const [activeProject, setActiveProject] = useState(null);
 
     return (
-        <div className={`${dark ? "bg-gray-950 text-white" : "bg-white text-black"} min-h-screen relative overflow-x-hidden`}>
+        <div className={`${dark ? "bg-gray-950 text-white" : "bg-white text-black"} min-h-screen relative`}>
 
             {/* Background Glow */}
             <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-blue-500 opacity-20 blur-3xl rounded-full"></div>
@@ -53,19 +53,17 @@ export default function Portfolio() {
 
             {/* Navbar */}
             <nav className="flex justify-between items-center px-6 py-4 sticky top-0 z-50 bg-white/10 backdrop-blur-md border-b border-white/10">
-                <h1 className="text-lg font-bold">Harsh Kashyap</h1>
+                <h1 className="font-bold">Harsh Kashyap</h1>
 
                 <div className="flex items-center gap-5">
-                    <button
-                        onClick={() => setDark(!dark)}
-                        className="border px-3 py-1 rounded hover:bg-white hover:text-black transition"
-                    >
+                    <button onClick={() => setDark(!dark)} className="border px-3 py-1 rounded">
                         {dark ? "Light" : "Dark"}
                     </button>
 
-                    <a href="#projects" className="hover:text-blue-400">Projects</a>
-                    <a href="#skills" className="hover:text-blue-400">Skills</a>
-                    <a href="#contact" className="hover:text-blue-400">Contact</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
                 </div>
             </nav>
 
@@ -74,69 +72,45 @@ export default function Portfolio() {
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-5xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+                    className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
                 >
                     DevOps Engineer 🚀
                 </motion.h2>
 
-                <p className="text-lg mb-4 opacity-80">
-                    AWS • Kubernetes • Terraform • CI/CD
-                </p>
+                <p className="mb-3">4.7 Years Experience | AWS • Kubernetes • Terraform • CI/CD</p>
 
-                <p className="text-sm opacity-60 max-w-xl mx-auto">
-                    I build scalable, automated, production-ready cloud systems.
-                </p>
-
-                <div className="mt-6 flex justify-center gap-4">
-                    <a href="#projects" className="px-6 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 transition">
-                        View Work
-                    </a>
-                    <a href="#contact" className="px-6 py-2 border rounded-lg hover:bg-white hover:text-black transition">
-                        Contact
-                    </a>
-                </div>
+                <a
+                    href="/resume.pdf"
+                    download
+                    className="inline-block mt-4 px-6 py-2 bg-blue-500 rounded hover:bg-blue-600"
+                >
+                    Download Resume
+                </a>
             </section>
 
             {/* Projects */}
             <section id="projects" className="py-20 px-6 scroll-mt-24">
-                <h3 className="text-3xl font-bold mb-12 text-center">🚀 Projects</h3>
+                <h3 className="text-3xl font-bold text-center mb-10">🚀 Projects</h3>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: i * 0.1 }}
-                            className="group relative p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-lg hover:scale-[1.03] transition overflow-hidden"
-                        >
-                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-blue-500/10 to-purple-500/10"></div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {projects.map((p, i) => (
+                        <motion.div key={i} whileHover={{ scale: 1.05 }} className="p-6 border rounded-xl">
+                            <h4 className="font-bold mb-2">{p.title}</h4>
+                            <p className="text-sm mb-2">{p.desc}</p>
+                            <p className="text-green-400 text-xs mb-2">{p.impact}</p>
 
-                            <h4 className="text-xl font-semibold mb-3 group-hover:text-blue-400">
-                                {project.title}
-                            </h4>
-
-                            <p className="text-sm opacity-80 mb-3">{project.desc}</p>
-
-                            <p className="text-green-400 text-xs mb-2">🚀 {project.impact}</p>
-
-                            <p className="text-xs opacity-60 mb-4">{project.details}</p>
-
-                            <div className="flex justify-between items-center">
-                                <button
-                                    onClick={() => setActiveProject(project)}
-                                    className="text-blue-400 text-sm hover:underline"
-                                >
+                            <div className="flex justify-between">
+                                <button onClick={() => setActiveProject(p)} className="text-blue-400 text-sm">
                                     Details
                                 </button>
 
                                 <a
-                                    href={project.link}
+                                    href={p.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-sm border px-3 py-1 rounded hover:bg-white hover:text-black transition"
+                                    className="text-sm border px-2 rounded"
                                 >
-                                    Code ↗
+                                    Code
                                 </a>
                             </div>
                         </motion.div>
@@ -145,25 +119,18 @@ export default function Portfolio() {
 
                 {/* Modal */}
                 {activeProject && (
-                    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-                        <div className="bg-white text-black p-8 rounded-xl max-w-lg w-full mx-4">
-                            <h4 className="text-xl font-bold mb-3">{activeProject.title}</h4>
+                    <div className="fixed inset-0 bg-black/70 flex items-center justify-center">
+                        <div className="bg-white text-black p-6 rounded max-w-md">
+                            <h4 className="font-bold">{activeProject.title}</h4>
                             <p>{activeProject.desc}</p>
-                            <p className="text-green-600 my-2">{activeProject.impact}</p>
-                            <p className="text-sm">{activeProject.details}</p>
+                            <p className="text-green-600">{activeProject.impact}</p>
+                            <p>{activeProject.details}</p>
 
-                            <a
-                                href={activeProject.link}
-                                target="_blank"
-                                className="text-blue-500 block mt-3"
-                            >
-                                View GitHub →
+                            <a href={activeProject.link} target="_blank" className="text-blue-500">
+                                View Repo
                             </a>
 
-                            <button
-                                onClick={() => setActiveProject(null)}
-                                className="mt-4 w-full bg-gray-900 text-white py-2 rounded"
-                            >
+                            <button onClick={() => setActiveProject(null)} className="block mt-4">
                                 Close
                             </button>
                         </div>
@@ -171,20 +138,35 @@ export default function Portfolio() {
                 )}
             </section>
 
+            {/* Experience */}
+            <section id="experience" className="py-20 px-6 scroll-mt-24">
+                <h3 className="text-3xl font-bold text-center mb-10">💼 Experience</h3>
+
+                <div className="max-w-2xl mx-auto space-y-4">
+                    <div className="p-4 border rounded">
+                        <h4 className="font-bold">DevOps Engineer (1 Year)</h4>
+                        <p className="text-sm">AWS, Kubernetes, CI/CD, Monitoring</p>
+                    </div>
+
+                    <div className="p-4 border rounded">
+                        <h4 className="font-bold">QA Engineer (2.5 Years)</h4>
+                        <p className="text-sm">Automation Testing, API Testing</p>
+                    </div>
+
+                    <div className="p-4 border rounded">
+                        <h4 className="font-bold">Civil Engineer (1.3 Years)</h4>
+                        <p className="text-sm">Project Execution & Site Management</p>
+                    </div>
+                </div>
+            </section>
+
             {/* Skills */}
             <section id="skills" className="py-16 px-6 text-center scroll-mt-24">
                 <h3 className="text-2xl font-bold mb-6">⚡ Skills</h3>
 
                 <div className="flex flex-wrap justify-center gap-3">
-                    {[
-                        "AWS", "EC2", "ECS", "EKS", "Docker", "Kubernetes", "Helm",
-                        "Terraform", "Jenkins", "CI/CD", "Prometheus", "Grafana",
-                        "Linux", "Bash", "Git", "Nginx"
-                    ].map((s) => (
-                        <span
-                            key={s}
-                            className="px-4 py-2 rounded-full bg-white/10 border border-white/10 hover:bg-blue-500 transition text-sm"
-                        >
+                    {["AWS", "Docker", "Kubernetes", "Terraform", "Jenkins", "Prometheus", "Grafana", "Linux"].map((s) => (
+                        <span key={s} className="border px-3 py-1 rounded">
                             {s}
                         </span>
                     ))}
@@ -195,28 +177,29 @@ export default function Portfolio() {
             <section id="contact" className="py-16 px-6 text-center scroll-mt-24">
                 <h3 className="text-2xl font-bold mb-4">Contact</h3>
 
-                <p className="mb-4">harshkashyap.hk996@gmail.com</p>
+                <p className="mb-3">harshkashyap.hk996@gmail.com</p>
 
-                <div className="flex justify-center gap-6">
+                <div className="flex justify-center gap-4">
                     <a
                         href="https://github.com/harsh2595"
                         target="_blank"
-                        className="px-5 py-2 rounded-lg bg-white/10 hover:bg-white hover:text-black transition"
+                        rel="noopener noreferrer"
+                        className="border px-4 py-2 rounded"
                     >
                         GitHub
                     </a>
 
                     <a
-                        href="https://linkedin.com"
+                        href="https://www.linkedin.com/in/harsh-kashyap-099213213/"
                         target="_blank"
-                        className="px-5 py-2 rounded-lg bg-white/10 hover:bg-white hover:text-black transition"
+                        rel="noopener noreferrer"
+                        className="border px-4 py-2 rounded"
                     >
                         LinkedIn
                     </a>
                 </div>
             </section>
 
-            {/* Footer */}
             <footer className="text-center p-6 text-sm opacity-60">
                 © {new Date().getFullYear()} Harsh Kashyap
             </footer>
