@@ -105,10 +105,40 @@ export default function Portfolio() {
 
             {/* Skills */}
             <section id="skills" className="py-16 px-6 text-center">
-                <h3 className="text-2xl font-bold mb-6"> Skills</h3>
+                <h3 className="text-2xl font-bold mb-6">⚡ Skills</h3>
+
                 <div className="flex flex-wrap justify-center gap-3">
-                    {["AWS", "Docker", "Terraform", "Kubernetes", "Jenkins", "Prometheus", "Grafana", "Linux"].map((s) => (
-                        <span key={s} className="border px-4 py-2 rounded">{s}</span>
+                    {[
+                        // ☁️ Cloud
+                        "AWS", "EC2", "ECS", "EKS", "S3", "IAM", "VPC", "CloudWatch", "ALB",
+
+                        // 🐳 Containers
+                        "Docker", "Docker Compose", "Containerization",
+
+                        // ☸️ Orchestration
+                        "Kubernetes", "Helm", "HPA", "VPA", "Ingress", "RBAC",
+
+                        // ⚙️ CI/CD
+                        "Jenkins", "GitHub Actions", "CI/CD Pipelines",
+
+                        // 🏗️ Infrastructure as Code
+                        "Terraform", "Terraform Modules", "State Management",
+
+                        // 📊 Monitoring & Logging
+                        "Prometheus", "Grafana", "ELK Stack", "OpenSearch",
+
+                        // 🖥️ OS & Scripting
+                        "Linux", "Shell Scripting", "Bash",
+
+                        // 🔧 Dev Tools
+                        "Git", "GitHub", "Nginx", "SSL", "REST APIs"
+                    ].map((s) => (
+                        <span
+                            key={s}
+                            className="border px-4 py-2 rounded hover:bg-white hover:text-black transition"
+                        >
+                            {s}
+                        </span>
                     ))}
                 </div>
             </section>
@@ -118,7 +148,7 @@ export default function Portfolio() {
             {/* Contact */}
             <section id="contact" className="py-16 px-6 text-center">
                 <h3 className="text-2xl font-bold mb-4">📩 Contact</h3>
-                <p>harsh@email.com</p>
+                <p>harshkashyap.hk996@gmail.com</p>
                 <div className="mt-2">
                     <a href="#" className="text-blue-500 mr-3">GitHub</a>
                     <a href="#" className="text-blue-500">LinkedIn</a>
