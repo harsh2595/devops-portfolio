@@ -38,6 +38,13 @@ const projects = [
         details: "EKS, Prometheus, Grafana",
         link: "https://github.com/harsh2595/node-eks-app-monitoring",
     },
+    {
+        title: "GitHub Actions Pipeline for Python Dockerized App",
+        desc: "GitHub Actions Pipeline triggred on push",
+        impact: "Auto Deployment of python app",
+        details: "Docker, python, GitHub Actions",
+        link: "https://github.com/harsh2595/github-actions-practice.git",
+    }
 ];
 
 export default function Portfolio() {
@@ -45,7 +52,7 @@ export default function Portfolio() {
     const [activeProject, setActiveProject] = useState(null);
 
     return (
-        <div className={`${dark ? "bg-gray-950 text-white" : "bg-white text-black"} min-h-screen relative`}>
+        <div className={`${dark ? "bg-gray-950 text-white" : "bg-white text-black"} min-h-screen relative overflow-x-hidden`}>
 
             {/* Background Glow */}
             <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-blue-500 opacity-20 blur-3xl rounded-full"></div>
@@ -53,7 +60,7 @@ export default function Portfolio() {
 
             {/* Navbar */}
             <nav className="flex justify-between items-center px-6 py-4 sticky top-0 z-50 bg-white/10 backdrop-blur-md border-b border-white/10">
-                <h1 className="font-bold">Harsh Kashyap</h1>
+                <h1 className="font-bold">Harsh Kashyap | DevOps Engineer </h1>
 
                 <div className="flex items-center gap-5">
                     <button onClick={() => setDark(!dark)} className="border px-3 py-1 rounded">
@@ -77,7 +84,7 @@ export default function Portfolio() {
                     DevOps Engineer 🚀
                 </motion.h2>
 
-                <p className="mb-3">4.7 Years Experience | AWS • Kubernetes • Terraform • CI/CD</p>
+                <p className="mb-3">AWS • Kubernetes • Terraform • CI/CD • Docker • Monitoring</p>
 
                 <a
                     href="/resume.pdf"
@@ -90,7 +97,7 @@ export default function Portfolio() {
 
             {/* Projects */}
             <section id="projects" className="py-20 px-6 scroll-mt-24">
-                <h3 className="text-3xl font-bold text-center mb-10">🚀 Projects</h3>
+                <h3 className="text-3xl font-bold text-center mb-10">Projects</h3>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {projects.map((p, i) => (
@@ -161,47 +168,141 @@ export default function Portfolio() {
             </section>
 
             {/* Skills */}
-            <section id="skills" className="py-16 px-6 text-center scroll-mt-24">
-                <h3 className="text-2xl font-bold mb-6">⚡ Skills</h3>
+            <section id="skills" className="py-20 px-6 text-center scroll-mt-24">
+                <h3 className="text-3xl font-bold mb-10">Skills</h3>
 
-                <div className="flex flex-wrap justify-center gap-3">
-                    {["AWS", "Docker", "Kubernetes", "Terraform", "Jenkins", "Prometheus", "Grafana", "Linux"].map((s) => (
-                        <span key={s} className="border px-3 py-1 rounded">
-                            {s}
-                        </span>
-                    ))}
+                <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    {/* Cloud */}
+                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
+                        <h4 className="font-semibold mb-4 text-blue-400">☁️ Cloud</h4>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                            {["AWS", "EC2", "ECS", "EKS", "S3", "IAM", "VPC", "CloudWatch", "ALB", "Route53"].map(s => (
+                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Containers */}
+                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
+                        <h4 className="font-semibold mb-4 text-green-400">🐳 Containers</h4>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                            {["Docker", "Docker Compose", "Containerization", "Image Optimization"].map(s => (
+                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Kubernetes */}
+                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
+                        <h4 className="font-semibold mb-4 text-purple-400">☸️ Kubernetes</h4>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                            {["Kubernetes", "Helm", "HPA", "VPA", "Ingress", "RBAC", "ConfigMaps", "Secrets", "PVC", "Scaling"].map(s => (
+                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* CI/CD */}
+                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
+                        <h4 className="font-semibold mb-4 text-yellow-400">⚙️ CI/CD</h4>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                            {["Jenkins", "GitHub Actions", "CI/CD Pipelines", "Automation", "Build & Deploy", "Pipeline Optimization"].map(s => (
+                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* IaC */}
+                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
+                        <h4 className="font-semibold mb-4 text-pink-400">🏗️ Infrastructure as Code</h4>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                            {["Terraform", "Terraform Modules", "State Management", "Infra Automation", "Provisioning"].map(s => (
+                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Monitoring */}
+                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
+                        <h4 className="font-semibold mb-4 text-red-400">📊 Monitoring & Logging</h4>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                            {["Prometheus", "Grafana", "Alerting", "OpenSearch", "ELK Stack", "Logging", "Observability"].map(s => (
+                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-8"></div>
+                    {/* OS & Tools */}
+                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
+                        <h4 className="font-semibold mb-4 text-gray-400">🖥️ OS & Tools</h4>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                            {["Linux", "Bash", "Shell Scripting", "Git", "GitHub", "Nginx", "SSL", "REST APIs"].map(s => (
+                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
 
             {/* Contact */}
-            <section id="contact" className="py-16 px-6 text-center scroll-mt-24">
-                <h3 className="text-2xl font-bold mb-4">Contact</h3>
+            <section id="contact" className="py-20 px-6 scroll-mt-24 bg-gradient-to-b from-gray-900 to-black">
+                <h3 className="text-3xl font-bold text-center mb-10 text-white">📞 Contact</h3>
 
-                <p className="mb-3">harshkashyap.hk996@gmail.com</p>
+                <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
 
-                <div className="flex justify-center gap-4">
-                    <a
-                        href="https://github.com/harsh2595"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="border px-4 py-2 rounded"
-                    >
-                        GitHub
-                    </a>
+                    {/* Left Side - Contact Info */}
+                    <div className="text-center md:text-left text-gray-300 space-y-4">
 
-                    <a
-                        href="https://www.linkedin.com/in/harsh-kashyap-099213213/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="border px-4 py-2 rounded"
-                    >
-                        LinkedIn
-                    </a>
+                        {/* Email */}
+                        <p>
+                            📧
+                            <a
+                                href="mailto:harshkashyap.hk996@gmail.com"
+                                className="ml-2 hover:text-blue-400 transition"
+                            >
+                                harshkashyap.hk996@gmail.com
+                            </a>
+                        </p>
+
+                        {/* Phone */}
+                        <p>
+                            📱
+                            <a
+                                href="tel:+919045347984"
+                                className="ml-2 hover:text-green-400 transition"
+                            >
+                                +91-9045347984
+                            </a>
+                        </p>
+                    </div>
+
+                    {/* Right Side - Social Links */}
+                    <div className="flex gap-6">
+                        <a
+                            href="https://github.com/harsh2595"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="border border-gray-600 px-6 py-2 rounded-lg text-white hover:bg-white hover:text-black transition duration-300"
+                        >
+                            GitHub
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/harsh-kashyap-099213213/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="border border-blue-500 px-6 py-2 rounded-lg text-blue-400 hover:bg-blue-500 hover:text-white transition duration-300"
+                        >
+                            LinkedIn
+                        </a>
+                    </div>
+
                 </div>
             </section>
 
             <footer className="text-center p-6 text-sm opacity-60">
-                © {new Date().getFullYear()} Harsh Kashyap
+                © {new Date().getFullYear()} Harsh Kashyap | DevOps Engineer
             </footer>
         </div>
     );
