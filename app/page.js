@@ -148,10 +148,27 @@ export default function Portfolio() {
             {/* Contact */}
             <section id="contact" className="py-16 px-6 text-center">
                 <h3 className="text-2xl font-bold mb-4">📩 Contact</h3>
-                <p>harshkashyap.hk996@gmail.com</p>
-                <div className="mt-2">
-                    <a href="#" className="text-blue-500 mr-3">GitHub</a>
-                    <a href="#" className="text-blue-500">LinkedIn</a>
+
+                <p className="mb-3">harshkashyap.hk996@gmail.com</p>
+
+                <div className="mt-2 flex justify-center gap-6">
+                    <a
+                        href="https://github.com/harsh2595"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="border px-4 py-2 rounded hover:bg-white hover:text-black transition"
+                    >
+                        GitHub
+                    </a>
+
+                    <a
+                        href="https://www.linkedin.com/in/harsh-kashyap-099213213/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="border px-4 py-2 rounded hover:bg-white hover:text-black transition"
+                    >
+                        LinkedIn
+                    </a>
                 </div>
             </section>
 
