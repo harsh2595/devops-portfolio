@@ -2,144 +2,83 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Download, Mail, Menu, Phone, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Download, Mail, Phone } from "lucide-react";
 import { contact, navItems } from "../lib/site-data";
 
 export default function SiteShell({ children }) {
     const pathname = usePathname();
-    const [menuOpen, setMenuOpen] = useState(false);
-
-    useEffect(() => {
-        setMenuOpen(false);
-    }, [pathname]);
-
-    useEffect(() => {
-        document.body.style.overflow = menuOpen ? "hidden" : "";
-
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [menuOpen]);
 
     return (
-        <div className="min-h-screen bg-[#07111f] text-slate-100">
+        <div className="min-h-screen bg-[#0f1828] text-slate-100">
             <div className="pointer-events-none fixed inset-0 overflow-hidden">
-                <div className="absolute left-[-8rem] top-[-5rem] h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl" />
-                <div className="absolute right-[-6rem] top-40 h-80 w-80 rounded-full bg-orange-400/15 blur-3xl" />
-                <div className="absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-sky-500/10 blur-3xl" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_35%),linear-gradient(180deg,rgba(7,17,31,0.2),rgba(7,17,31,0.92))]" />
+                <div className="absolute left-[-8rem] top-[-4rem] h-72 w-72 rounded-full bg-amber-400/20 blur-3xl" />
+                <div className="absolute right-[-7rem] top-24 h-80 w-80 rounded-full bg-sky-400/15 blur-3xl" />
+                <div className="absolute bottom-[-4rem] left-1/3 h-72 w-72 rounded-full bg-rose-300/10 blur-3xl" />
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px] opacity-20" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,17,31,0.24),rgba(10,17,31,0.94))]" />
             </div>
 
-            <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
-                <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-                    <Link href="/" className="flex flex-col text-slate-100">
-                        <span className="text-sm font-semibold tracking-[0.24em]">HARSH KASHYAP</span>
-                        <span className="mt-1 text-xs text-slate-400">DevOps Engineer</span>
-                    </Link>
+            <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0c1422]/80 backdrop-blur-xl">
+                <nav className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:px-8 xl:flex-row xl:items-center xl:justify-between">
+                    <div className="flex flex-col gap-4">
+                        <Link href="/" className="shrink-0 text-slate-100">
+                            <div className="flex flex-col">
+                                <span className="text-sm font-semibold tracking-[0.3em] text-white sm:text-base">HARSH KASHYAP</span>
+                                <span className="mt-1 text-xs text-slate-400">DevOps Engineer</span>
+                            </div>
+                        </Link>
+                    </div>
 
-                    <div className="hidden items-center gap-6 md:flex">
-                        {navItems.map((item) => {
-                            const active = pathname === item.href;
+                    <div className="flex flex-wrap items-center gap-3">
+                            <div className="flex flex-wrap items-center rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm backdrop-blur">
+                                {navItems.map((item) => {
+                                    const active = pathname === item.href;
 
-                            return (
-                                <Link
-                                    key={item.href}
-                                    href={item.href}
-                                    className={`text-sm transition ${active ? "text-white" : "text-slate-300 hover:text-white"}`}
-                                >
-                                    {item.label}
-                                </Link>
-                            );
-                        })}
-                        <a
-                            href={contact.emailHref}
-                            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300 transition hover:border-cyan-300/30 hover:bg-cyan-300/10 hover:text-white"
-                        >
-                            <Mail size={14} className="text-cyan-200" />
-                            <span className="max-w-[11rem] truncate">{contact.email}</span>
-                        </a>
-                        <a
-                            href={contact.phoneHref}
-                            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300 transition hover:border-emerald-300/30 hover:bg-emerald-300/10 hover:text-white"
-                        >
-                            <Phone size={14} className="text-emerald-200" />
-                            <span>{contact.phone}</span>
-                        </a>
+                                    return (
+                                        <Link
+                                            key={item.href}
+                                            href={item.href}
+                                            className={`px-3 text-sm whitespace-nowrap transition ${active ? "text-amber-200" : "text-slate-300 hover:text-white"}`}
+                                        >
+                                            {item.label}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                            <a
+                                href={contact.emailHref}
+                                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300 transition hover:border-amber-300/30 hover:bg-amber-300/10 hover:text-white"
+                            >
+                                <Mail size={14} className="text-amber-200" />
+                                <span className="max-w-[11rem] truncate">{contact.email}</span>
+                            </a>
+                            <a
+                                href={contact.phoneHref}
+                                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300 transition hover:border-sky-300/30 hover:bg-sky-300/10 hover:text-white"
+                            >
+                                <Phone size={14} className="text-sky-200" />
+                                <span>{contact.phone}</span>
+                            </a>
+
                         <a
                             href="/resume.pdf"
                             download
-                            className="inline-flex items-center gap-2 rounded-full border border-cyan-300/40 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-100 transition hover:border-cyan-200 hover:bg-cyan-300/20"
+                            className="inline-flex shrink-0 items-center gap-2 rounded-full border border-amber-300/40 bg-amber-300/10 px-4 py-2 text-sm font-medium text-amber-100 transition hover:border-amber-200 hover:bg-amber-300/20"
                         >
                             <Download size={16} />
                             Resume
                         </a>
                     </div>
-
-                    <button
-                        type="button"
-                        onClick={() => setMenuOpen((prev) => !prev)}
-                        className="inline-flex items-center justify-center rounded-full border border-white/10 p-2 text-slate-100 md:hidden"
-                        aria-label="Toggle navigation menu"
-                        aria-expanded={menuOpen}
-                        aria-controls="mobile-navigation"
-                    >
-                        {menuOpen ? <X size={18} /> : <Menu size={18} />}
-                    </button>
                 </nav>
-
-                {menuOpen && (
-                    <div id="mobile-navigation" className="border-t border-white/10 px-4 py-4 md:hidden">
-                        <div className="flex flex-col gap-3">
-                            <a
-                                href={contact.emailHref}
-                                className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200"
-                            >
-                                <Mail size={16} className="text-cyan-200" />
-                                <span className="truncate">{contact.email}</span>
-                            </a>
-                            <a
-                                href={contact.phoneHref}
-                                className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200"
-                            >
-                                <Phone size={16} className="text-emerald-200" />
-                                <span>{contact.phone}</span>
-                            </a>
-                            {navItems.map((item) => {
-                                const active = pathname === item.href;
-
-                                return (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={`rounded-2xl border px-4 py-3 text-sm ${active
-                                            ? "border-cyan-300/30 bg-cyan-300/15 text-white"
-                                            : "border-white/10 bg-white/5 text-slate-200"}`}
-                                    >
-                                        {item.label}
-                                    </Link>
-                                );
-                            })}
-                            <a
-                                href="/resume.pdf"
-                                download
-                                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-300 px-4 py-3 text-sm font-semibold text-slate-950"
-                            >
-                                <Download size={16} />
-                                Download Resume
-                            </a>
-                        </div>
-                    </div>
-                )}
             </header>
 
             <main className="relative z-10">{children}</main>
 
-            <footer className="relative z-10 border-t border-white/10 bg-slate-950/40 px-4 py-8 sm:px-6 lg:px-8">
+            <footer className="relative z-10 border-t border-white/10 bg-[#0c1422]/75 px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                     <div>
-                        <p className="text-sm font-semibold tracking-[0.18em] text-white">HARSH KASHYAP</p>
-                        <p className="mt-2 max-w-md text-sm leading-6 text-slate-400">
+                        <p className="text-sm font-semibold tracking-[0.24em] text-white">HARSH KASHYAP</p>
+                        <p className="mt-3 max-w-md text-sm leading-6 text-slate-400">
                             DevOps engineer focused on cloud infrastructure, deployment automation, observability, and reliable delivery systems.
                         </p>
                     </div>
@@ -147,16 +86,16 @@ export default function SiteShell({ children }) {
                     <div className="grid gap-3 sm:grid-cols-2">
                         <a
                             href={contact.emailHref}
-                            className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200 transition hover:border-cyan-300/30 hover:bg-cyan-300/10 hover:text-white"
+                            className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200 transition hover:border-amber-300/30 hover:bg-amber-300/10 hover:text-white"
                         >
-                            <Mail size={16} className="text-cyan-200" />
-                            <span>{contact.email}</span>
+                            <Mail size={16} className="text-amber-200" />
+                            <span className="break-all">{contact.email}</span>
                         </a>
                         <a
                             href={contact.phoneHref}
-                            className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200 transition hover:border-emerald-300/30 hover:bg-emerald-300/10 hover:text-white"
+                            className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200 transition hover:border-sky-300/30 hover:bg-sky-300/10 hover:text-white"
                         >
-                            <Phone size={16} className="text-emerald-200" />
+                            <Phone size={16} className="text-sky-200" />
                             <span>{contact.phone}</span>
                         </a>
                     </div>

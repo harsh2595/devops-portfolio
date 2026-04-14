@@ -14,7 +14,7 @@ export default function GetInTouchPage() {
             <section className="mx-auto max-w-7xl px-4 pb-12 pt-16 sm:px-6 lg:px-8">
                 <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
                     <div>
-                        <p className="text-sm uppercase tracking-[0.24em] text-cyan-200">Get in Touch</p>
+                        <p className="text-sm uppercase tracking-[0.24em] text-amber-200">Get in Touch</p>
                         <h1 className="mt-3 max-w-3xl text-4xl font-semibold leading-tight text-white sm:text-5xl">
                             Let&apos;s talk about DevOps roles, cloud systems, delivery pipelines, or infrastructure support.
                         </h1>
@@ -25,9 +25,9 @@ export default function GetInTouchPage() {
                         <div className="mt-8 grid gap-4">
                             <a
                                 href={contact.emailHref}
-                                className="flex items-center gap-4 rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4 text-slate-100 transition hover:bg-white/10"
+                                className="flex items-center gap-4 rounded-[1.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] px-5 py-4 text-slate-100 transition hover:border-amber-300/30 hover:bg-amber-300/10"
                             >
-                                <Mail size={20} className="text-cyan-200" />
+                                <Mail size={20} className="text-amber-200" />
                                 <div>
                                     <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Email</p>
                                     <p className="mt-1 text-sm sm:text-base">{contact.email}</p>
@@ -36,9 +36,9 @@ export default function GetInTouchPage() {
 
                             <a
                                 href={contact.phoneHref}
-                                className="flex items-center gap-4 rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4 text-slate-100 transition hover:bg-white/10"
+                                className="flex items-center gap-4 rounded-[1.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] px-5 py-4 text-slate-100 transition hover:border-sky-300/30 hover:bg-sky-300/10"
                             >
-                                <Phone size={20} className="text-emerald-200" />
+                                <Phone size={20} className="text-sky-200" />
                                 <div>
                                     <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Phone</p>
                                     <p className="mt-1 text-sm sm:text-base">{contact.phone}</p>
@@ -49,7 +49,7 @@ export default function GetInTouchPage() {
                                 href={contact.linkedin}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-4 rounded-[1.5rem] border border-white/10 bg-white/5 px-5 py-4 text-slate-100 transition hover:bg-white/10"
+                                className="flex items-center gap-4 rounded-[1.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] px-5 py-4 text-slate-100 transition hover:border-sky-300/30 hover:bg-sky-300/10"
                             >
                                 <ArrowUpRight size={20} className="text-sky-200" />
                                 <div>
@@ -59,8 +59,8 @@ export default function GetInTouchPage() {
                             </a>
                         </div>
 
-                        <div className="mt-8 rounded-[1.75rem] border border-cyan-300/20 bg-cyan-300/10 p-5">
-                            <p className="text-sm font-semibold text-cyan-100">Email setup note</p>
+                        <div className="mt-8 rounded-[1.75rem] border border-amber-300/20 bg-amber-300/10 p-5">
+                            <p className="text-sm font-semibold text-amber-100">Email setup note</p>
                             <p className="mt-2 text-sm leading-7 text-slate-200">
                                 For live email delivery, add SMTP environment variables such as your Gmail SMTP details and app password. The form is already wired to send notifications to your inbox.
                             </p>

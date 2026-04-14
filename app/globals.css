@@ -16,11 +16,13 @@ body {
 }
 
 body {
+    overflow-x: hidden;
     margin: 0;
     background:
-        radial-gradient(circle at top, rgba(34, 211, 238, 0.12), transparent 30%),
-        linear-gradient(180deg, #07111f 0%, #0b1324 48%, #09101d 100%);
-    color: #e2e8f0;
+        radial-gradient(circle at top left, rgba(245, 158, 11, 0.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.12), transparent 24%),
+        linear-gradient(180deg, #101728 0%, #111c31 45%, #0c1525 100%);
+    color: #ecf3ff;
     font-family: "Avenir Next", Montserrat, "Segoe UI", sans-serif;
 }
 
@@ -33,8 +35,15 @@ button {
     font: inherit;
 }
 
+a,
+button,
+input,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
 ::selection {
-    background: rgba(103, 232, 249, 0.25);
+    background: rgba(251, 191, 36, 0.28);
     color: #f8fafc;
 }
 
@@ -43,12 +52,12 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(148, 163, 184, 0.35);
+    background: rgba(245, 158, 11, 0.28);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(15, 23, 42, 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {
