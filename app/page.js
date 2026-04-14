@@ -1,309 +1,182 @@
-"use client";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowUpRight, Download } from "lucide-react";
+import ProjectGrid from "../components/project-grid";
+import SiteShell from "../components/site-shell";
+import { contact, experiences, highlights, projects, skillGroups, stats } from "../lib/site-data";
 
-const projects = [
-    {
-        title: "AWS ECS EC2 Cluster using Terraform",
-        desc: "Deployed a scalable ECS cluster on EC2 using Terraform modules with ALB, Auto Scaling, and ECR.",
-        impact: "Automated infra provisioning & improved scalability",
-        details: "Terraform, ECS, ALB, ASG, ECR",
-        link: "https://github.com/harsh2595/terraform-ecsec2",
-    },
-    {
-        title: "OpenSearch Cluster & Terraform State",
-        desc: "Managed OpenSearch cluster with Terraform including drift detection & remote state.",
-        impact: "Reliable infra with state consistency",
-        details: "Terraform, OpenSearch, State Mgmt",
-        link: "https://github.com/harsh2595/terraform-opensearch-aws",
-    },
-    {
-        title: "Kubernetes Deployment with Helm",
-        desc: "Deployed workloads using Helm with HPA, RBAC, Ingress.",
-        impact: "Zero downtime deployments",
-        details: "K8s, Helm, HPA, RBAC",
-        link: "https://github.com/harsh2595/k8s-learning",
-    },
-    {
-        title: "Node.js App on ECS (CI/CD)",
-        desc: "CI/CD pipeline using Jenkins, Docker & ECS.",
-        impact: "Reduced deployment time",
-        details: "Jenkins, Docker, ECS",
-        link: "https://github.com/harsh2595/node-ecs-app",
-    },
-    {
-        title: "Node.js on EKS with Monitoring",
-        desc: "Deployed Node app with Prometheus & Grafana.",
-        impact: "Real-time monitoring & alerting",
-        details: "EKS, Prometheus, Grafana",
-        link: "https://github.com/harsh2595/node-eks-app-monitoring",
-    },
-    {
-        title: "GitHub Actions Pipeline for Python Dockerized App",
-        desc: "GitHub Actions Pipeline triggred on push",
-        impact: "Auto Deployment of python app",
-        details: "Docker, python, GitHub Actions",
-        link: "https://github.com/harsh2595/github-actions-practice.git",
-    }
-];
-
-export default function Portfolio() {
-    const [dark, setDark] = useState(true);
-    const [activeProject, setActiveProject] = useState(null);
-
+export default function HomePage() {
     return (
-        <div className={`${dark ? "bg-gray-950 text-white" : "bg-white text-black"} min-h-screen relative overflow-x-hidden`}>
+        <SiteShell>
+            <section className="mx-auto grid max-w-7xl gap-12 px-4 pb-16 pt-14 sm:px-6 md:pb-24 md:pt-20 lg:grid-cols-[1.2fr_0.8fr] lg:px-8">
+                <div className="max-w-3xl">
+                    <div className="mb-6 inline-flex max-w-full rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-[11px] font-semibold uppercase leading-5 tracking-[0.24em] text-cyan-100 sm:text-xs">
+                        DevOps Engineer • Cloud • Automation • Platform Delivery
+                    </div>
 
-            {/* Background Glow */}
-            <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-blue-500 opacity-20 blur-3xl rounded-full"></div>
-            <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] bg-purple-500 opacity-20 blur-3xl rounded-full"></div>
+                    <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+                        Building reliable cloud infrastructure, cleaner deployments, and production-ready automation.
+                    </h1>
 
-            {/* Navbar */}
-            <nav className="flex justify-between items-center px-6 py-4 sticky top-0 z-50 bg-white/10 backdrop-blur-md border-b border-white/10">
-                <h1 className="font-bold">Harsh Kashyap | DevOps Engineer </h1>
+                    <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+                        I design delivery pipelines and infrastructure that help teams ship faster, monitor better, and scale with confidence across AWS, Kubernetes, Terraform, Docker, and GitHub Actions.
+                    </p>
 
-                <div className="flex items-center gap-5">
-                    <button onClick={() => setDark(!dark)} className="border px-3 py-1 rounded">
-                        {dark ? "Light" : "Dark"}
-                    </button>
+                    <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                        <Link
+                            href="/projects"
+                            className="inline-flex items-center justify-center rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+                        >
+                            View Projects
+                        </Link>
+                        <Link
+                            href="/get-in-touch"
+                            className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/10"
+                        >
+                            Let&apos;s Connect
+                        </Link>
+                    </div>
 
-                    <a href="#projects">Projects</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#contact">Contact</a>
+                    <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                        {stats.map((stat) => (
+                            <div key={stat.label} className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-[0_24px_60px_rgba(0,0,0,0.18)]">
+                                <p className="text-2xl font-semibold text-white">{stat.value}</p>
+                                <p className="mt-2 text-sm leading-6 text-slate-300">{stat.label}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </nav>
 
-            {/* Hero */}
-            <section className="text-center py-24 px-6">
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
-                >
-                    DevOps Engineer 🚀
-                </motion.h2>
+                <div className="self-start rounded-[2rem] border border-white/10 bg-white/[0.08] p-5 shadow-[0_30px_100px_rgba(0,0,0,0.35)] backdrop-blur">
+                    <div className="rounded-[1.6rem] border border-white/10 bg-slate-950/80 p-6">
+                        <p className="text-sm uppercase tracking-[0.22em] text-cyan-200">Core Stack</p>
+                        <div className="mt-6 flex flex-wrap gap-3">
+                            {["AWS", "Terraform", "Kubernetes", "Docker", "GitHub Actions", "Jenkins", "Prometheus", "Grafana"].map((item) => (
+                                <span
+                                    key={item}
+                                    className="rounded-full border border-cyan-300/15 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-50"
+                                >
+                                    {item}
+                                </span>
+                            ))}
+                        </div>
 
-                <p className="mb-3">AWS • Kubernetes • Terraform • CI/CD • Docker • Monitoring</p>
-
-                <a
-                    href="/resume.pdf"
-                    download
-                    className="inline-block mt-4 px-6 py-2 bg-blue-500 rounded hover:bg-blue-600"
-                >
-                    Download Resume
-                </a>
+                        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                            {highlights.map((highlight) => (
+                                <div key={highlight.title} className="rounded-3xl border border-white/10 bg-white/5 p-5">
+                                    <p className="text-sm text-slate-400">Focus</p>
+                                    <p className="mt-2 text-lg font-semibold text-white">{highlight.title}</p>
+                                    <p className="mt-2 text-sm leading-6 text-slate-300">{highlight.text}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </section>
 
-            {/* Projects */}
-            <section id="projects" className="py-20 px-6 scroll-mt-24">
-                <h3 className="text-3xl font-bold text-center mb-10">Projects</h3>
+            <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+                <ProjectGrid projects={projects.slice(0, 3)} />
+                <div className="mt-10 text-center">
+                    <Link
+                        href="/projects"
+                        className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                    >
+                        Explore all projects
+                        <ArrowUpRight size={16} />
+                    </Link>
+                </div>
+            </section>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {projects.map((p, i) => (
-                        <motion.div key={i} whileHover={{ scale: 1.05 }} className="p-6 border rounded-xl">
-                            <h4 className="font-bold mb-2">{p.title}</h4>
-                            <p className="text-sm mb-2">{p.desc}</p>
-                            <p className="text-green-400 text-xs mb-2">{p.impact}</p>
+            <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+                <div className="mb-10">
+                    <p className="text-sm uppercase tracking-[0.24em] text-cyan-200">Experience</p>
+                    <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">A background shaped by delivery, quality, and execution.</h2>
+                </div>
 
-                            <div className="flex justify-between">
-                                <button onClick={() => setActiveProject(p)} className="text-blue-400 text-sm">
-                                    Details
-                                </button>
-
-                                <a
-                                    href={p.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm border px-2 rounded"
-                                >
-                                    Code
-                                </a>
-                            </div>
-                        </motion.div>
+                <div className="grid gap-5 lg:grid-cols-3">
+                    {experiences.map((role) => (
+                        <div key={role.title} className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+                            <p className="text-sm uppercase tracking-[0.18em] text-slate-400">{role.period}</p>
+                            <h3 className="mt-3 text-xl font-semibold text-white">{role.title}</h3>
+                            <p className="mt-3 text-sm leading-7 text-slate-300">{role.summary}</p>
+                        </div>
                     ))}
                 </div>
-
-                {/* Modal */}
-                {activeProject && (
-                    <div className="fixed inset-0 bg-black/70 flex items-center justify-center">
-                        <div className="bg-white text-black p-6 rounded max-w-md">
-                            <h4 className="font-bold">{activeProject.title}</h4>
-                            <p>{activeProject.desc}</p>
-                            <p className="text-green-600">{activeProject.impact}</p>
-                            <p>{activeProject.details}</p>
-
-                            <a href={activeProject.link} target="_blank" className="text-blue-500">
-                                View Repo
-                            </a>
-
-                            <button onClick={() => setActiveProject(null)} className="block mt-4">
-                                Close
-                            </button>
-                        </div>
-                    </div>
-                )}
             </section>
 
-            {/* Experience */}
-            <section id="experience" className="py-20 px-6 scroll-mt-24">
-                <h3 className="text-3xl font-bold text-center mb-10">💼 Experience</h3>
-
-                <div className="max-w-2xl mx-auto space-y-4">
-                    <div className="p-4 border rounded">
-                        <h4 className="font-bold">DevOps Engineer (1 Year)</h4>
-                        <p className="text-sm">AWS, Kubernetes, CI/CD, Monitoring</p>
+            <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+                <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                    <div>
+                        <p className="text-sm uppercase tracking-[0.24em] text-cyan-200">Skills</p>
+                        <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">Tooling that supports modern infrastructure and smooth releases.</h2>
                     </div>
+                    <p className="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+                        A balanced mix of cloud platforms, container orchestration, automation pipelines, infrastructure as code, and observability.
+                    </p>
+                </div>
 
-                    <div className="p-4 border rounded">
-                        <h4 className="font-bold">QA Engineer (2.5 Years)</h4>
-                        <p className="text-sm">Automation Testing, API Testing</p>
-                    </div>
+                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                    {skillGroups.map((group) => {
+                        const Icon = group.icon;
 
-                    <div className="p-4 border rounded">
-                        <h4 className="font-bold">Civil Engineer (1.3 Years)</h4>
-                        <p className="text-sm">Project Execution & Site Management</p>
-                    </div>
+                        return (
+                            <div key={group.title} className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+                                <div className="flex items-center gap-3">
+                                    <div className="rounded-2xl border border-white/10 bg-white/5 p-3">
+                                        <Icon size={18} className={group.accent} />
+                                    </div>
+                                    <h3 className={`text-lg font-semibold ${group.accent}`}>{group.title}</h3>
+                                </div>
+
+                                <div className="mt-5 flex flex-wrap gap-2">
+                                    {group.items.map((item) => (
+                                        <span key={item} className="rounded-full border border-white/10 px-3 py-2 text-sm text-slate-200">
+                                            {item}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </section>
 
-            {/* Skills */}
-            <section id="skills" className="py-20 px-6 text-center scroll-mt-24">
-                <h3 className="text-3xl font-bold mb-10">Skills</h3>
-
-                <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                    {/* Cloud */}
-                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
-                        <h4 className="font-semibold mb-4 text-blue-400">☁️ Cloud</h4>
-                        <div className="flex flex-wrap gap-2 justify-center">
-                            {["AWS", "EC2", "ECS", "EKS", "S3", "IAM", "VPC", "CloudWatch", "ALB", "Route53"].map(s => (
-                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
-                            ))}
+            <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+                <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(34,211,238,0.14),rgba(249,115,22,0.1),rgba(255,255,255,0.05))] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.25)] sm:p-8 lg:p-10">
+                    <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+                        <div>
+                            <p className="text-sm uppercase tracking-[0.24em] text-cyan-100">Start a Conversation</p>
+                            <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">Ready to improve your cloud delivery, CI/CD, or infrastructure automation?</h2>
+                            <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-200 sm:text-base">
+                                Reach out for DevOps roles, freelance work, deployment help, or platform engineering conversations.
+                            </p>
                         </div>
-                    </div>
 
-                    {/* Containers */}
-                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
-                        <h4 className="font-semibold mb-4 text-green-400">🐳 Containers</h4>
-                        <div className="flex flex-wrap gap-2 justify-center">
-                            {["Docker", "Docker Compose", "Containerization", "Image Optimization"].map(s => (
-                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Kubernetes */}
-                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
-                        <h4 className="font-semibold mb-4 text-purple-400">☸️ Kubernetes</h4>
-                        <div className="flex flex-wrap gap-2 justify-center">
-                            {["Kubernetes", "Helm", "HPA", "VPA", "Ingress", "RBAC", "ConfigMaps", "Secrets", "PVC", "Scaling"].map(s => (
-                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* CI/CD */}
-                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
-                        <h4 className="font-semibold mb-4 text-yellow-400">⚙️ CI/CD</h4>
-                        <div className="flex flex-wrap gap-2 justify-center">
-                            {["Jenkins", "GitHub Actions", "CI/CD Pipelines", "Automation", "Build & Deploy", "Pipeline Optimization"].map(s => (
-                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* IaC */}
-                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
-                        <h4 className="font-semibold mb-4 text-pink-400">🏗️ Infrastructure as Code</h4>
-                        <div className="flex flex-wrap gap-2 justify-center">
-                            {["Terraform", "Terraform Modules", "State Management", "Infra Automation", "Provisioning"].map(s => (
-                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Monitoring */}
-                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
-                        <h4 className="font-semibold mb-4 text-red-400">📊 Monitoring & Logging</h4>
-                        <div className="flex flex-wrap gap-2 justify-center">
-                            {["Prometheus", "Grafana", "Alerting", "OpenSearch", "ELK Stack", "Logging", "Observability"].map(s => (
-                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="flex flex-wrap justify-center gap-8"></div>
-                    {/* OS & Tools */}
-                    <div className="p-6 rounded-xl border bg-white/5 backdrop-blur">
-                        <h4 className="font-semibold mb-4 text-gray-400">🖥️ OS & Tools</h4>
-                        <div className="flex flex-wrap gap-2 justify-center">
-                            {["Linux", "Bash", "Shell Scripting", "Git", "GitHub", "Nginx", "SSL", "REST APIs"].map(s => (
-                                <span key={s} className="px-3 py-1 text-sm border rounded-full">{s}</span>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Contact */}
-            <section id="contact" className="py-20 px-6 scroll-mt-24 bg-gradient-to-b from-gray-900 to-black">
-                <h3 className="text-3xl font-bold text-center mb-10 text-white">📞 Contact</h3>
-
-                <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-
-                    {/* Left Side - Contact Info */}
-                    <div className="text-center md:text-left text-gray-300 space-y-4">
-
-                        {/* Email */}
-                        <p>
-                            📧
-                            <a
-                                href="mailto:harshkashyap.hk996@gmail.com"
-                                className="ml-2 hover:text-blue-400 transition"
+                        <div className="flex flex-col gap-4">
+                            <Link
+                                href="/get-in-touch"
+                                className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
                             >
-                                harshkashyap.hk996@gmail.com
-                            </a>
-                        </p>
-
-                        {/* Phone */}
-                        <p>
-                            📱
+                                Get in Touch
+                                <ArrowUpRight size={16} />
+                            </Link>
                             <a
-                                href="tel:+919045347984"
-                                className="ml-2 hover:text-green-400 transition"
+                                href={contact.emailHref}
+                                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
                             >
-                                +91-9045347984
+                                Email me directly
                             </a>
-                        </p>
+                            <a
+                                href="/resume.pdf"
+                                download
+                                className="inline-flex items-center justify-center gap-2 rounded-full border border-cyan-300/40 bg-cyan-300/10 px-6 py-3 text-sm font-semibold text-cyan-100 transition hover:border-cyan-200 hover:bg-cyan-300/20"
+                            >
+                                <Download size={16} />
+                                Download Resume
+                            </a>
+                        </div>
                     </div>
-
-                    {/* Right Side - Social Links */}
-                    <div className="flex gap-6">
-                        <a
-                            href="https://github.com/harsh2595"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="border border-gray-600 px-6 py-2 rounded-lg text-white hover:bg-white hover:text-black transition duration-300"
-                        >
-                            GitHub
-                        </a>
-
-                        <a
-                            href="https://www.linkedin.com/in/harsh-kashyap-099213213/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="border border-blue-500 px-6 py-2 rounded-lg text-blue-400 hover:bg-blue-500 hover:text-white transition duration-300"
-                        >
-                            LinkedIn
-                        </a>
-                    </div>
-
                 </div>
             </section>
-
-            <footer className="text-center p-6 text-sm opacity-60">
-                © {new Date().getFullYear()} Harsh Kashyap | DevOps Engineer
-            </footer>
-        </div>
+        </SiteShell>
     );
 }

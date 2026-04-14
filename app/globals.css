@@ -2,29 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Smooth scrolling */
 html {
     scroll-behavior: smooth;
 }
 
-/* Matte premium feel */
+* {
+    box-sizing: border-box;
+}
+
+html,
 body {
-    background-color: #0a0a0a;
-    color: #eaeaea;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen;
+    min-height: 100%;
 }
 
-/* Subtle selection style */
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at top, rgba(34, 211, 238, 0.12), transparent 30%),
+        linear-gradient(180deg, #07111f 0%, #0b1324 48%, #09101d 100%);
+    color: #e2e8f0;
+    font-family: "Avenir Next", Montserrat, "Segoe UI", sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
 ::selection {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(103, 232, 249, 0.25);
+    color: #f8fafc;
 }
 
-/* Scrollbar (premium minimal) */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(148, 163, 184, 0.35);
     border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }
